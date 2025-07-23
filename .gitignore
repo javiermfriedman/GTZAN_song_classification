@@ -1,0 +1,12 @@
+__pycache__/
+.vscode/
+.python-version
+.DS_Store
+.env
+
+
+Data/
+
+3_sec_mel_spectrum_training/models/
+3_sec_mel_spectrum_training/__pycache__
+
