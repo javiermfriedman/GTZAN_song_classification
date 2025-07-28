@@ -117,7 +117,6 @@ GTZAN_song_classification/
 │   ├── genres_augmented/                 # Augmented audio files
 │   └── mel_spectrogram_data_3_seconds/  # Processed mel spectrograms
 ├── requirements.txt                      # Python dependencies
-├── .env                                 # Environment variables
 └── README.md                            # Project documentation
 ```
 
