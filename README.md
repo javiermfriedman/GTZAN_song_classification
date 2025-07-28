@@ -120,21 +120,11 @@ GTZAN_song_classification/
 └── README.md                            # Project documentation
 ```
 
-## 🔧 Key Features
-
-- **End-to-End Pipeline**: Complete workflow from raw audio to genre classification
-- **Data Augmentation**: Robust preprocessing with noise, volume, and pitch augmentation
-- **Multiple Architectures**: Comparison of simple vs. advanced CNN models
-- **Comprehensive Testing**: Full dataset evaluation with detailed analysis
-- **Professional Documentation**: Well-documented code with clear module structure
-- **Environment Management**: Virtual environment setup with dependency management
 
 ## 🎯 Key Achievements
 
+- **99% accuracy**: achieved on 30 second song clip classifications
 - **81.9% Accuracy**: Achieved on CNN Model 2 with 40 epochs
-- **Robust Architecture**: Advanced CNN with batch normalization and dropout
-- **Comprehensive Analysis**: Full dataset testing with confusion matrix visualization
-- **Production-Ready**: Professional code structure with proper documentation
 
 ---
 
