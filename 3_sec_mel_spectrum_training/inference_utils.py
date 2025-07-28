@@ -1,3 +1,38 @@
+"""
+GTZAN Music Genre Classification - Inference Utilities
+====================================================
+
+This module provides utility functions for model inference, audio processing,
+and interactive prediction capabilities. It includes functions for generating
+mel spectrograms from audio clips and handling user input for genre prediction.
+
+Author: Javier Friedman
+
+Dependencies:
+    - librosa: For audio processing and mel spectrogram generation
+    - numpy: For numerical operations and array manipulation
+    - os: For file system operations
+
+Functions:
+    - generate_mel_spectrogram: Converts audio clips to mel spectrograms
+    - prompt_input: Interactive function for user input of genre and track selection
+
+Audio Processing Parameters:
+    - n_fft: 2048 (FFT window size)
+    - hop_length: 512 (samples between frames)
+    - n_mels: 128 (number of mel frequency bins)
+    - sample_rate: Maintained from input audio
+
+Usage:
+    from inference_utils import generate_mel_spectrogram, prompt_input
+    
+    # Generate mel spectrogram from audio
+    mel_spec, sr = generate_mel_spectrogram(audio_clip, sample_rate)
+    
+    # Get user input for prediction
+    genre, track = prompt_input()
+"""
+
 import os
 import librosa
 import numpy as np

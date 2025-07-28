@@ -1,6 +1,33 @@
 """
-this file will load all the 3 second mel spectrum data and return it as a numpy array
-along with the labels for each clip of data
+GTZAN Music Genre Classification - Data Loading Module
+====================================================
+
+This module provides functionality to load and prepare the GTZAN music genre dataset
+for training deep learning models. It handles the loading of 3-second mel spectrogram
+data that has been preprocessed and stored as .npy files.
+
+Author: [Your Name]
+Date: [Date]
+Version: 1.0
+
+Dependencies:
+    - numpy: For array operations
+    - os: For file system operations
+    - dotenv: For environment variable management
+
+Environment Variables:
+    - MEL_DATA_PATH: Path to the mel spectrogram data directory (default: Data/mel_spectrogram_data_3_seconds)
+
+Usage:
+    from load_3_sec_mel_data import get_3_sec_mel_data
+    
+    X_data, Y_data = get_3_sec_mel_data()
+    print(f"Data shape: {X_data.shape}")
+    print(f"Labels shape: {Y_data.shape}")
+
+Returns:
+    - X_data: numpy array of mel spectrograms with shape (n_samples, time_bins, mel_bins)
+    - Y_data: numpy array of genre labels (0-9 corresponding to 10 genres)
 """
 
 import os

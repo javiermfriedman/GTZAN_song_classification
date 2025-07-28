@@ -1,0 +1,2 @@
+overall_accuracy,total_tracks,correct_predictions,average_confidence,average_clips_per_track,blues_accuracy,blues_count,classical_accuracy,classical_count,country_accuracy,country_count,disco_accuracy,disco_count,hiphop_accuracy,hiphop_count,jazz_accuracy,jazz_count,metal_accuracy,metal_count,pop_accuracy,pop_count,reggae_accuracy,reggae_count,rock_accuracy,rock_count
+0.997997997997998,999,997,0.9458778776833617,9.99099099099099,1.0,100,1.0,100,1.0,100,0.99,100,1.0,100,1.0,99,0.99,100,1.0,100,1.0,100,1.0,100

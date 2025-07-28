@@ -1,3 +1,46 @@
+"""
+GTZAN Music Genre Classification - Main Training Script
+======================================================
+
+This script is the main entry point for training CNN models on the GTZAN music
+genre dataset. It loads preprocessed mel spectrogram data, splits it into
+training and validation sets, builds and compiles a CNN model, and trains it
+for music genre classification.
+
+Author: [Your Name]
+Date: [Date]
+Version: 1.0
+
+Dependencies:
+    - tensorflow.keras: For model building and training
+    - sklearn.model_selection: For data splitting
+    - numpy: For array operations
+    - load_3_sec_mel_data: Custom module for data loading
+    - model: Custom module for CNN architectures
+    - model_utils: Custom module for visualization
+
+Model Configuration:
+    - Architecture: CNN Model 2 (with batch normalization and dropout)
+    - Optimizer: Adam with learning rate 0.0001
+    - Loss: Sparse categorical crossentropy
+    - Metrics: Accuracy
+    - Batch size: 64
+    - Epochs: 40
+
+Data Processing:
+    - Input: 3-second mel spectrograms
+    - Output: 10 genre classes
+    - Train/Validation split: 80/20
+
+Usage:
+    python classify_mel_3_secs.py
+    
+Output:
+    - Trained model saved to: models/cnn2_model_3.keras
+    - Training history plot saved to: plots/cnn2_history_3.png
+    - Console output with training progress and final metrics
+"""
+
 from load_3_sec_mel_data import get_3_sec_mel_data
 from model import build_cnn_model_1, build_cnn_model_2
 import os

@@ -8,6 +8,9 @@ import librosa
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def generate_mel_spectrogram(audio_path):
     """

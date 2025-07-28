@@ -4,6 +4,9 @@ import math
 import json
 import numpy as np
 import soundfile as sf # Import soundfile
+from dotenv import load_dotenv
+
+load_dotenv()
 
 CLIP_DURATION = 3 # in seconds
 

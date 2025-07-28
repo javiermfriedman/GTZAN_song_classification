@@ -1,7 +1,7 @@
-tensorflow
-scikit-learn
-numpy
-matplotlib
 opencv-python
 librosa
 python-dotenv
+pandas
+matplotlib
+seaborn
+scikit-learn

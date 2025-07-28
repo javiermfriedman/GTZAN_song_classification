@@ -1,7 +1,50 @@
 """
-This script is used to test the model on the test set
-logic is we take input track divide into 3 second intervals and pass each
-3 second interval and get the probability of each genre
+GTZAN Music Genre Classification - Model Testing and Inference Script
+==================================================================
+
+This script provides an interactive interface for testing trained CNN models on
+the GTZAN dataset. It allows users to select specific tracks from the dataset,
+process them into 3-second segments, and obtain genre predictions for each
+segment. The final prediction is determined by aggregating probabilities across
+all segments of a track.
+
+Author: Javier Friedman
+
+Dependencies:
+    - tensorflow.keras: For model loading and prediction
+    - librosa: For audio loading and processing
+    - numpy: For numerical operations
+    - math: For mathematical operations
+    - os: For file system operations
+    - dotenv: For environment variable management
+    - inference_utils: Custom module for audio processing and user input
+
+Model Requirements:
+    - Trained CNN model saved as: models/cnn2_model_3.keras
+    - Model expects input shape: (1, time_bins, mel_bins, 1)
+
+Data Processing:
+    - Audio tracks are divided into 3-second segments
+    - Each segment is converted to mel spectrogram
+    - Predictions are aggregated across all segments
+    - Final genre prediction is based on highest probability
+
+Supported Genres:
+    1. blues      2. classical   3. country     4. disco
+    5. hiphop     6. jazz        7. metal       8. pop
+    9. reggae    10. rock
+
+Environment Variables:
+    - GENRES_ORIGINAL_PATH: Path to original genre audio files (default: Data/genres_original)
+
+Usage:
+    python test_model.py
+    
+    Follow the interactive prompts to:
+    1. Select a genre (1-10)
+    2. Enter track number (00000-00099)
+    3. View predictions for each 3-second segment
+    4. See final aggregated genre prediction
 """
 
 from model import build_cnn_model_1, build_cnn_model_2

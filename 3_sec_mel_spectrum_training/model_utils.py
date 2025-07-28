@@ -1,3 +1,31 @@
+"""
+GTZAN Music Genre Classification - Model Utilities
+================================================
+
+This module provides utility functions for model analysis, visualization, and
+evaluation. It includes tools for plotting training history, analyzing model
+performance, and generating visualizations for model interpretation.
+
+Author: [Your Name]
+Date: [Date]
+Version: 1.0
+
+Dependencies:
+    - matplotlib.pyplot: For creating plots and visualizations
+    - numpy: For numerical operations (if needed for future extensions)
+
+Functions:
+    - plot_history: Creates training/validation accuracy and loss plots
+
+Usage:
+    from model_utils import plot_history
+    
+    # Plot training history
+    plot_history(history, "path/to/save/plot.png")
+    
+    # The function will display the plot and save it to the specified path
+"""
+
 from matplotlib import pyplot as plt
 
 def plot_history(hist, path_to_save_plot):

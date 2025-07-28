@@ -1,10 +1,39 @@
 """
-This file defines two CNN models for mel spectrogram classification:
+GTZAN Music Genre Classification - CNN Model Architectures
+========================================================
 
-- build_cnn_model_1: A simple CNN with three convolutional blocks (Conv2D + MaxPooling2D), followed by a dense layer. It does not use batch normalization or dropout.
+This module defines two Convolutional Neural Network (CNN) architectures designed
+for music genre classification using mel spectrograms. The models are specifically
+tailored for processing 3-second audio clips converted to mel spectrogram format.
 
-- build_cnn_model_2: A more advanced CNN with three convolutional blocks, each including Conv2D, BatchNormalization, MaxPooling2D, and Dropout layers. It also uses a larger dense layer and more dropout for regularization, which can help prevent overfitting and improve training stability.
+Author: Javier Friedman
+
+Dependencies:
+    - tensorflow.keras: For building neural network models
+    - tensorflow.keras.layers: For layer definitions
+    - tensorflow.keras.models: For Sequential model
+
+Model Architectures:
+    1. build_cnn_model_1: Simple CNN with basic convolutional blocks
+    2. build_cnn_model_2: Advanced CNN with batch normalization and dropout
+
+Input Shape:
+    - Expected input: (time_bins, mel_bins, 1) - 3D tensor representing mel spectrogram
+    
+Output:
+    - 10 classes corresponding to music genres: blues, classical, country, disco,
+      hiphop, jazz, metal, pop, reggae, rock
+
+Usage:
+    from model import build_cnn_model_1, build_cnn_model_2
+    
+    # For simple model
+    model = build_cnn_model_1(input_shape)
+    
+    # For advanced model with regularization
+    model = build_cnn_model_2(input_shape)
 """
+
 from tensorflow.keras.layers import Dense, Dropout, Conv2D, MaxPooling2D, Flatten, BatchNormalization
 from tensorflow.keras.models import Sequential
 
