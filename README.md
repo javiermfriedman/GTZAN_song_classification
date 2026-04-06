@@ -20,7 +20,7 @@ CNN + mel spectrogram pipeline for classifying songs into 10 GTZAN genres.
   Your browser does not support the audio element.
 </audio>
 <audio controls>
-  <source src="assets/blues.00000.mp3" type="audio/mpeg">
+  <source src="[blues.00000.mp3](https://github.com/user-attachments/files/26518068/blues.00000.mp3)" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
