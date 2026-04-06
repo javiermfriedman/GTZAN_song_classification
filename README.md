@@ -15,7 +15,7 @@ CNN + mel spectrogram pipeline for classifying songs into 10 GTZAN genres.
 ## 🎧 Media Demo
 
 Sample source track (`blues.00000`):  
-[Watch/Listen on YouTube](https://www.youtube.com/watch?v=c3o8-bcfFvE)
+[▶ YouTube](https://www.youtube.com/watch?v=c3o8-bcfFvE)
 
 ### Mel Spectrogram
 
@@ -118,7 +118,7 @@ python 3_sec_mel_spectrum_training/test_full_dataset.py
 
 ### Confusion Matrix Analysis
 
-![Confusion Matrix](3_sec_mel_spectrum_training/plots/confusion_matrix_20250728_131931.png)
+![Confusion Matrix](/3_sec_mel_spectrum_training/plots/confusion_matrix_20250728_131931.png)
 
 What this matrix says:
 
