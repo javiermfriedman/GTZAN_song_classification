@@ -20,13 +20,7 @@ CNN + mel spectrogram pipeline for classifying songs into 10 GTZAN genres.
 - `assets/sample_mel_spectrogram.png` (mel spectrogram image)
 
 ### Input Audio (MP3)
-
-<audio controls>
-  <source src="assets/sample_clip.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-
-Fallback link: [Listen to sample clip](assets/sample_clip.mp3)
+[blues.00000.wav](https://github.com/user-attachments/files/26517821/blues.00000.wav)
 
 ### Mel Spectrogram
 
