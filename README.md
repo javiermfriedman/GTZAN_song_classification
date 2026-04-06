@@ -14,15 +14,8 @@ CNN + mel spectrogram pipeline for classifying songs into 10 GTZAN genres.
 
 ## 🎧 Media Demo
 
-### Input Audio (WAV)
-<audio controls preload="none">
-  <source src="assets/blues.00000.wav" type="audio/wav">
-  Your browser does not support the audio element.
-</audio>
-<audio controls>
-  <source src="[blues.00000.mp3](https://github.com/user-attachments/files/26518068/blues.00000.mp3)" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+Sample source track (`blues.00000`):  
+[Watch/Listen on YouTube](https://www.youtube.com/watch?v=c3o8-bcfFvE)
 
 ### Mel Spectrogram
 
@@ -31,15 +24,11 @@ CNN + mel spectrogram pipeline for classifying songs into 10 GTZAN genres.
 ## Why This Project Is Cool
 
 Music genre is tricky because songs blend rhythm, timbre, and harmonic patterns.  
-This project treats each song as multiple short "listening windows" and lets the model vote across windows, which is fun and practical for real-world classification.
-
-## 📊 Project Overview
-
-in this project i apply deep learning techniques to music genre classification, achieving state-of-the-art performance on the GTZAN dataset. The system processes 3-second audio segments, converts them to mel spectrograms, and uses CNN architectures to classify music into 10 distinct genres.
+This project treats each song as multiple short "listening windows" and lets the model vote across windows, which is fun and practical for real-world classification. In this project i apply deep learning techniques to music genre classification, achieving state-of-the-art performance on the GTZAN dataset. The system processes 3-second audio segments, converts them to mel spectrograms, and uses CNN architectures to classify music into 10 distinct genres.
 
 ### 🎵 GTZAN Dataset
 
-The [GTZAN Genre Collection](http://marsyas.info/downloads/datasets.html) is a widely-used dataset for music genre classification research. It contains 1,000 audio tracks, each 30 seconds long, evenly distributed across 10 music genres:
+The [GTZAN Genre Collection](https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification) is a widely-used dataset for music genre classification research. It contains 1,000 audio tracks, each 30 seconds long, evenly distributed across 10 music genres:
 
 - **Blues** - Traditional blues music with characteristic chord progressions
 - **Classical** - Orchestral and instrumental classical compositions
@@ -92,14 +81,6 @@ python 3_sec_mel_spectrum_training/test_model.py
 # Full dataset evaluation and reports
 python 3_sec_mel_spectrum_training/test_full_dataset.py
 ```
-
-## Dataset
-
-The [GTZAN Genre Collection](http://marsyas.info/downloads/datasets.html) contains 1,000 tracks (30 seconds each) across:
-
-`blues`, `classical`, `country`, `disco`, `hiphop`, `jazz`, `metal`, `pop`, `reggae`, `rock`.
-
-## Technical Approach
 
 ### Audio pipeline
 
@@ -176,13 +157,9 @@ GTZAN_song_classification/
 └── README.md
 ```
 
-## Limitations and Next Steps
+## License
 
-- Add real unit/integration tests around preprocessing and inference.
-- Add experiment tracking (config + metrics + model version per run).
-- Compare with alternative architectures (e.g., CRNN, transfer learning).
-- Improve genre-level robustness with stronger augmentation and calibration.
+This project is licensed under the MIT License. See `LICENSE` for details.
 
----
+Note: Dataset and media files may be subject to their own licenses/terms of use.
 
-If you are into music + ML, feel free to fork and experiment. PRs are welcome.
