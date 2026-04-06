@@ -1,10 +1,10 @@
-# GTZAN Music Genre Classification
+# Song Genre Classifier
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg)](https://tensorflow.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-CNN + mel spectrogram pipeline for classifying songs into 10 GTZAN genres.
+Deep learning CNN + mel spectrogram pipeline for classifying songs into 10 GTZAN genres.
 
 ## TL;DR
 
@@ -15,7 +15,7 @@ CNN + mel spectrogram pipeline for classifying songs into 10 GTZAN genres.
 ## 🎧 Media Demo
 
 Sample source track (`blues.00000`):  
-[▶ YouTube](https://www.youtube.com/watch?v=c3o8-bcfFvE)
+[![YouTube](https://img.shields.io/badge/Watch_on-YouTube-FF0000?logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=c3o8-bcfFvE)
 
 ### Mel Spectrogram
 
