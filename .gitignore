@@ -3,10 +3,32 @@ __pycache__/
 .python-version
 .DS_Store
 .env
+.env.*
+!.env.example
+
+gtzan_env/
+.venv/
+venv/
+env/
 
 
 Data/
 
 3_sec_mel_spectrum_training/models/
 3_sec_mel_spectrum_training/__pycache__
+3_sec_mel_spectrum_training/plots/
+3_sec_mel_spectrum_training/results/
+*.keras
+*.h5
+
+# Python caches and build artifacts
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+*.egg-info/
 

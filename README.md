@@ -4,7 +4,38 @@
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg)](https://tensorflow.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A deep learning project for music genre classification using Convolutional Neural Networks (CNNs) and mel spectrograms. This project implements an end-to-end pipeline for classifying music into 10 different genres using the GTZAN dataset.
+CNN + mel spectrogram pipeline for classifying songs into 10 GTZAN genres.
+
+## TL;DR
+
+- End-to-end pipeline: raw `.wav` -> 3-second clips -> mel spectrograms -> CNN genre classifier.
+- Best current run in this repo: **81.9%** (CNN 2, 40 epochs).
+- Includes interactive prediction + full-dataset evaluation scripts.
+
+## 🎧 Media Demo
+
+
+
+- `assets/sample_clip.mp3` (audio sample)
+- `assets/sample_mel_spectrogram.png` (mel spectrogram image)
+
+### Input Audio (MP3)
+
+<audio controls>
+  <source src="assets/sample_clip.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+Fallback link: [Listen to sample clip](assets/sample_clip.mp3)
+
+### Mel Spectrogram
+
+![Sample Mel Spectrogram](assets/sample_mel_spectrogram.png)
+
+## Why This Project Is Cool
+
+Music genre is tricky because songs blend rhythm, timbre, and harmonic patterns.  
+This project treats each song as multiple short "listening windows" and lets the model vote across windows, which is fun and practical for real-world classification.
 
 ## 📊 Project Overview
 
@@ -25,45 +56,72 @@ The [GTZAN Genre Collection](http://marsyas.info/downloads/datasets.html) is a w
 - **Reggae** - Jamaican reggae with distinctive rhythmic patterns
 - **Rock** - Rock music with electric guitars and strong beats
 
-## 🔬 Technical Approach
+## Quickstart
 
-### Audio Processing Pipeline
+### 1) Install dependencies
 
-1. **Audio Segmentation**: 30-second tracks are divided into 3-second segments for consistent input size
-2. **Mel Spectrogram Generation**: Audio segments are converted to mel spectrograms using librosa
-3. **Feature Extraction**: Mel spectrograms capture frequency content in a perceptually meaningful way
-4. **Data Augmentation**: Noise addition, volume changes, and pitch shifting to improve model robustness
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-### Model Architecture
+### 2) Configure paths
 
-Two CNN architectures were implemented and compared:
+```bash
+cp .env.example .env
+```
 
-#### CNN Model 1 (Simple Architecture)
-- **3 Convolutional Blocks**: Conv2D + MaxPooling2D
-- **No Regularization**: Basic architecture without batch normalization or dropout
-- **Dense Layers**: 64 units followed by 10-class output
-- **Purpose**: Baseline model for comparison
+Update `.env` if your dataset folders live somewhere else.
 
-#### CNN Model 2 (Advanced Architecture)
-- **3 Convolutional Blocks**: Conv2D + BatchNormalization + MaxPooling2D + Dropout
-- **Regularization**: Batch normalization and dropout for improved generalization
-- **Enhanced Dense Layer**: 128 units with dropout (0.5)
-- **Purpose**: Optimized model with regularization techniques
+### 3) Prepare data
 
-### Technical Specifications
+```bash
+python augment_raw_audio/slice_data_3_secs.py
+python raw_audio_to_data/mel_spectrum_3_sec.py
+```
 
-- **Input Shape**: `(time_bins, mel_bins, 1)` - 3D mel spectrogram tensors
-- **Mel Spectrogram Parameters**:
-  - FFT Window Size: 2048
-  - Hop Length: 512
-  - Mel Bands: 128
-- **Training Parameters**:
-  - Optimizer: Adam (learning rate: 0.0001)
-  - Loss Function: Sparse Categorical Crossentropy
-  - Batch Size: 64
-  - Train/Validation Split: 80/20
+### 4) Train
 
-## 📈 Results & Performance
+```bash
+python 3_sec_mel_spectrum_training/classify_mel_3_secs.py
+```
+
+### 5) Run inference / evaluation
+
+```bash
+# Interactive single-track prediction
+python 3_sec_mel_spectrum_training/test_model.py
+
+# Full dataset evaluation and reports
+python 3_sec_mel_spectrum_training/test_full_dataset.py
+```
+
+## Dataset
+
+The [GTZAN Genre Collection](http://marsyas.info/downloads/datasets.html) contains 1,000 tracks (30 seconds each) across:
+
+`blues`, `classical`, `country`, `disco`, `hiphop`, `jazz`, `metal`, `pop`, `reggae`, `rock`.
+
+## Technical Approach
+
+### Audio pipeline
+
+1. Slice each 30-second track into 3-second clips.
+2. Convert clips to mel spectrograms (`n_fft=2048`, `hop_length=512`, `n_mels=128`).
+3. Train CNN on mel features.
+4. Aggregate clip-level probabilities to produce song-level prediction.
+
+### Model setup
+
+- **CNN 1 (baseline):** Conv2D + MaxPool blocks, minimal regularization.
+- **CNN 2 (improved):** BatchNorm + Dropout regularization.
+- **Optimizer:** Adam (`1e-4`)
+- **Loss:** sparse categorical crossentropy
+- **Batch size:** 64
+- **Split:** 80/20 train-validation
+
+## Results
 
 ### Model Performance Comparison
 
@@ -85,47 +143,50 @@ Two CNN architectures were implemented and compared:
 
 ![Confusion Matrix](3_sec_mel_spectrum_training/plots/confusion_matrix_20250728_131931.png)
 
-The confusion matrix reveals several interesting patterns in the model's performance:
+What this matrix says:
 
-- **Strong Performance**: Classical, metal, and rock show high accuracy with clear diagonal patterns
-- **Challenging Genres**: Some genres like disco and hip-hop show more confusion, likely due to overlapping rhythmic patterns
-- **Genre Confusion**: The model sometimes confuses similar genres (e.g., blues with rock, pop with disco)
+- **Strong classes:** classical, metal, and rock tend to be more separable.
+- **Harder boundaries:** disco/hiphop/pop show more overlap.
+- **Common confusion:** stylistically similar genres can be mixed by the model.
 
-## 📁 Project Structure
+## Reproducibility Notes
 
-```
+- Use `requirements.txt` and `.env.example` for consistent setup.
+- Results can vary by random initialization and data split.
+- Keep generated models/plots/results out of Git (already handled in `.gitignore`).
+
+## Project Structure
+
+```text
 GTZAN_song_classification/
-├── 3_sec_mel_spectrum_training/          # Main training and testing modules
-│   ├── classify_mel_3_secs.py           # Main training script
-│   ├── test_model.py                     # Interactive model testing
-│   ├── test_full_dataset.py              # Comprehensive dataset testing
-│   ├── load_3_sec_mel_data.py           # Data loading utilities
-│   ├── model.py                          # CNN model architectures
-│   ├── model_utils.py                    # Visualization utilities
-│   ├── inference_utils.py                # Audio processing utilities
-│   ├── models/                           # Saved trained models
-│   ├── plots/                            # Training plots and confusion matrices
-│   └── results/                          # Testing results and reports
-├── augment_raw_audio/                    # Audio augmentation pipeline
-│   ├── augment_data.py                   # Data augmentation utilities
-│   └── slice_data_3_secs.py             # Audio segmentation
-├── raw_audio_to_data/                    # Audio preprocessing
-│   ├── make_mel_spectrum_30_secs.py     # 30-second mel spectrogram generation
-│   └── mel_spectrum_3_sec.py            # 3-second mel spectrogram generation
-├── Data/                                 # Dataset storage
-│   ├── genres_original/                  # Original GTZAN audio files
-│   ├── genres_augmented/                 # Augmented audio files
-│   └── mel_spectrogram_data_3_seconds/  # Processed mel spectrograms
-├── requirements.txt                      # Python dependencies
-└── README.md                            # Project documentation
+├── 3_sec_mel_spectrum_training/
+│   ├── classify_mel_3_secs.py
+│   ├── test_model.py
+│   ├── test_full_dataset.py
+│   ├── load_3_sec_mel_data.py
+│   ├── model.py
+│   ├── model_utils.py
+│   └── inference_utils.py
+├── augment_raw_audio/
+│   ├── augment_data.py
+│   └── slice_data_3_secs.py
+├── raw_audio_to_data/
+│   ├── make_mel_spectrum_30_secs.py
+│   └── mel_spectrum_3_sec.py
+├── assets/
+├── requirements.txt
+├── requirements-dev.txt
+├── .env.example
+└── README.md
 ```
 
+## Limitations and Next Steps
 
-## 🎯 Key Achievements
-
-- **99% accuracy**: achieved on 30 second song clip classifications
-- **81.9% Accuracy**: Achieved on CNN Model 2 with 40 epochs
+- Add real unit/integration tests around preprocessing and inference.
+- Add experiment tracking (config + metrics + model version per run).
+- Compare with alternative architectures (e.g., CRNN, transfer learning).
+- Improve genre-level robustness with stronger augmentation and calibration.
 
 ---
 
-*This project demonstrates the effectiveness of CNN architectures combined with mel spectrogram features for music genre classification, achieving competitive performance on the GTZAN dataset.* 
+If you are into music + ML, feel free to fork and experiment. PRs are welcome.

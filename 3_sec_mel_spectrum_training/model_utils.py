@@ -6,9 +6,7 @@ This module provides utility functions for model analysis, visualization, and
 evaluation. It includes tools for plotting training history, analyzing model
 performance, and generating visualizations for model interpretation.
 
-Author: [Your Name]
-Date: [Date]
-Version: 1.0
+Author: Javier Friedman
 
 Dependencies:
     - matplotlib.pyplot: For creating plots and visualizations
